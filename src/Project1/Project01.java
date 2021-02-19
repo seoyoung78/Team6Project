@@ -8,6 +8,7 @@ public class Project01 {
 		boolean run = true;
 		String[][] boardArry = new String[100][5];
 		Scanner scanner = new Scanner(System.in);
+		int count=0;
 		
 		while (run) {
 			System.out.println("--------------------------------------------------------------------------");
@@ -18,66 +19,65 @@ public class Project01 {
 			String select = scanner.nextLine();
 			int num;
 			int i;
-			int max;
+			
 			
 			switch (select) {
 				case "1" :
 					System.out.println("--------------------------------------------------------------------------");
-					System.out.println("번호		제목		내용		글쓴이		조회수");
+					System.out.println("번호\t\t제목\t\t내용\t\t글쓴이\t\t조회수");
 					System.out.println("--------------------------------------------------------------------------");
 					
-					max = 0;				
+					/*max = 0;				
 					for (i = 0; i < boardArry.length; i++) {
 						if (boardArry[i][0] != null && Integer.parseInt(boardArry[i][0]) >= max) {
 							max = Integer.parseInt(boardArry[i][0]);
 						}
-					}
+					}*/
+					int max = count;
+					int compare = max;
 					
 					boolean button = true;
 					
-					while (button ) {
+					while (button) {
 						for (i = 0; i < boardArry.length; i++) {
-							if (boardArry[i][0] != null && Integer.parseInt(boardArry[i][0]) == max) {
-								System.out.println(boardArry[i][0] + "		" + boardArry[i][1] + "		" + boardArry[i][2] + "		" + boardArry[i][3] + "		" + boardArry[i][4]);
-								max--;
-							} else if (boardArry[i][0] != null && Integer.parseInt(boardArry[i][0]) < max && max != 0) {								
-								max--;
-							}
-							for (i = 0; i < boardArry.length; i++) {
-								
+							if (boardArry[i][0] != null) {
+								if (Integer.parseInt(boardArry[i][0]) == max) {
+									System.out.println(boardArry[i][0] + "\t\t" + boardArry[i][1] + "\t\t" + boardArry[i][2] + "\t\t" + boardArry[i][3] + "\t\t" + boardArry[i][4]);
+									max--;
+								} 
 							}
 						}
+						//System.out.println(max);
 						
-						/*for (i = 0; i < boardArry.length; i++) {
-							if (boardArry[i][0] != null && Integer.parseInt(boardArry[i][0]) < max && max != 0) {
-								//System.out.println(max);
-								max--;
-								break;
-							}	
-						}*/
+						if (max != compare) {
+							compare--;
+						} else {
+							max--;
+						}
 						
 						if (max == 0) {
 							button = false;
-						}
+						} 
+						
 					}
 													
 					break;
 					
 				case "2" :
-					max = 0;				
+					/*max = 0;				
 					for (i = 0; i < boardArry.length; i++) {
 						if (boardArry[i][0] != null && Integer.parseInt(boardArry[i][0]) > max) {
 							max = Integer.parseInt(boardArry[i][0]);
 						}
-					}
+					}*/
 					
 					for (i = 0; i < boardArry.length; i++) {						
 												
 						if (boardArry[i][0] == null) {
-							if (i+1 == max) {
+							if (i == count) {
 								boardArry[i][0] = String.valueOf(i+1);
 							} else {
-								boardArry[i][0] = String.valueOf(max+1);
+								boardArry[i][0] = String.valueOf(count+1);
 							}
 
 							System.out.print("제목: ");
@@ -87,6 +87,8 @@ public class Project01 {
 							System.out.print("글쓴이: ");
 							boardArry[i][3] = scanner.nextLine();
 							boardArry[i][4] = "0";
+							
+							count++; System.out.println(count);
 							
 							break;
 
@@ -102,9 +104,9 @@ public class Project01 {
 					
 					for (i = 0; i < boardArry.length; i++) {
 						if ( boardArry[i][0] != null && num == Integer.parseInt(boardArry[i][0])) { 
-							int count = Integer.parseInt(boardArry[i][4]);
-							count++;
-							boardArry[i][4] = String.valueOf(count);
+							int hit = Integer.parseInt(boardArry[i][4]);
+							hit++;
+							boardArry[i][4] = String.valueOf(hit);
 								
 							System.out.println("제목: " + boardArry[i][1]);
 							System.out.println("내용: " + boardArry[i][2]);
@@ -169,7 +171,8 @@ public class Project01 {
 			}
 			
 		}
-		
+
 	}
 
 }
+
