@@ -14,14 +14,20 @@ public class Project01 {
 		int count = 0;	// 생성하는 배열의 수 누적으로 카운트 하는 변수
 		int num;
 		int i;
+		boolean show = false;
+		String select;
 		
 		while (run) {
+			if (show = true) {
+				select = "1";
+			}
+			
 			System.out.println("--------------------------------------------------------------------------");
 			System.out.println("1.목록 | 2.생성(Creat) | 3.읽기(Read) | 4.수정(Update) | 5.삭제(Delete) | 6.종료");
 			System.out.println("--------------------------------------------------------------------------");
 			System.out.print("메뉴선택: ");
 			
-			String select = scanner.nextLine(); // 키보드 입력값을 select 변수에 저장
+			select = scanner.nextLine(); // 키보드 입력값을 select 변수에 저장
 					
 			switch (select) {
 				case "1" : // select = 1 일 경우 목록 출력
@@ -38,7 +44,11 @@ public class Project01 {
 						for (i = 0; i < boardArry.length; i++) {
 							if (boardArry[i][0] != null) {
 								if (Integer.parseInt(boardArry[i][0]) == max) { // 번호가 큰 순으로 출력
-									System.out.println(boardArry[i][0] + "\t\t" + boardArry[i][1] + "\t\t" + boardArry[i][2] + "\t\t" + boardArry[i][3] + "\t\t" + boardArry[i][4]);
+									System.out.println(boardArry[i][0]
+											+ "\t\t" + boardArry[i][1] 
+											+ "\t\t" + boardArry[i][2] 
+											+ "\t\t" + boardArry[i][3]
+											+ "\t\t" + boardArry[i][4]);
 									max--; // 최댓값이 출력 됐으면 최대값은 -1
 								} 
 							}
@@ -55,7 +65,8 @@ public class Project01 {
 						} 
 						
 					}
-													
+					
+					show = false;
 					break;
 					
 				case "2" : // select = 2 일 경우 생성
@@ -79,11 +90,13 @@ public class Project01 {
 							
 							count++; // 내용이 생성 되면 카운트 +1
 							
+							show = true;
 							break;
 
 						}
 			
 					}
+					
 					
 					break;
 					
@@ -102,9 +115,11 @@ public class Project01 {
 							System.out.println("글쓴이: " + boardArry[i][3]);
 							System.out.println("조회수: " + boardArry[i][4]);
 							
+							show = true;
 							break;
 						}
 					}
+					
 					
 					break;
 					
@@ -133,8 +148,11 @@ public class Project01 {
 							} else {
 								boardArry[i][2] = newContent; // 공백이 아니면 내용 newContent로 수정
 							}
+							
+							show = true;
 						}
 					}
+					
 					
 					break;
 					
@@ -147,6 +165,7 @@ public class Project01 {
 							for (int j = 0; j < boardArry[i].length; j++) {
 								boardArry[i][j] = null;
 							}
+							show = true;
 							break;
 						}
 					}
